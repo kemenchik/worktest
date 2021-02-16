@@ -1,23 +1,36 @@
 package com.example.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "banner")
 public class Banner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Integer id;
 
     private Date date;
+    private Integer cost;
     private String text;
+
+
+    @Column (name = "name")
     private String name;
     private boolean isActive;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
+
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
 
     public Date getDate() {
         return date;
@@ -59,8 +72,7 @@ public class Banner {
         this.category = category;
     }
 
-
-    public Long getId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 }
